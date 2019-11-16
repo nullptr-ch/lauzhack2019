@@ -2,6 +2,10 @@ pragma solidity >=0.4.22 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 contract Microdemocracy {
+    
+    event PollCreated(uint256 pollUid, string name, string description, uint256 closingMoment, string[] alternatives);
+    event OpinionGiven(uint256 pollUid);
+    event PollClosed(uint256 pollUid);
 
     uint8 constant MAX_ALTERNATIVES_PER_POLL = 10;
     
@@ -21,6 +25,7 @@ contract Microdemocracy {
         mapping(address => Opinion) opinions;
     }
 
+    uint256 currentPollUid = 0;
     Poll[] public polls;
 
     function createPoll(
@@ -40,6 +45,10 @@ contract Microdemocracy {
             alternatives: alternativeNames,
             alternativesCount: uint8(alternativeNames.length)
         }));
+        
+        Poll storage poll = polls[currentPollUid];
+        emit PollCreated(currentPollUid, poll.name, poll.description, poll.closingMoment, poll.alternatives);
+        currentPollUid += 1;
     }
 
     function giveOpinion(uint128 pollUid, uint8[] memory ranking) public {
@@ -66,6 +75,8 @@ contract Microdemocracy {
             voted: true,
             ranking: ranking
         });
+        
+        emit OpinionGiven(pollUid);
     }
 
     function closePoll(uint128 pollUid) public {
@@ -78,5 +89,7 @@ contract Microdemocracy {
         require(block.timestamp > poll.closingMoment, "You cannot close a poll whose closing moment is in the future.");
         
         poll.active = false;
+        
+        emit PollClosed(pollUid);
     }
 }
