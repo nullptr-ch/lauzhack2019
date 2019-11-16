@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import MicroDapp from 'components/microdapp'
 
-import routes from './routes'
+// import routes from './routes'
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,13 @@ Vue.use(VueRouter)
 export default function (/* { store, ssrContext } */) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
-    routes,
+    routes: [
+      {
+        path: '/',
+        name: 'microdapp',
+        component: MicroDapp
+      }
+    ],
 
     // Leave these as is and change from quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode
