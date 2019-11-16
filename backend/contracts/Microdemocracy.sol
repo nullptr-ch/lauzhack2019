@@ -1,8 +1,9 @@
 pragma solidity >= 0.5.8;
+pragma experimental ABIEncoderV2;
 
 contract Microdemocracy {
 
-    event PollCreated(uint256 pollUid, string name, string description, uint256 closingMoment, byte[MAX_ALTERNATIVE_STRING_LENGTH][] alternatives);
+    event PollCreated(uint256 pollUid, string name, string description, uint256 closingMoment, string[] alternatives);
     event OpinionGiven(uint256 pollUid);
     event PollClosed(uint256 pollUid);
 
@@ -20,7 +21,7 @@ contract Microdemocracy {
         uint256 closingMoment;
         bool active;
         address owner;
-        byte[MAX_ALTERNATIVE_STRING_LENGTH][] alternatives;
+        string[] alternatives;
         uint8 alternativesCount;
         mapping(address => Opinion) opinions;
     }
@@ -32,8 +33,8 @@ contract Microdemocracy {
         string memory pollName,
         string memory pollDescription,
         uint256 closingMoment,
-        byte[MAX_ALTERNATIVE_STRING_LENGTH][] memory alternativeNames
-    ) public {
+        string[] memory alternativeNames
+    ) public returns(uint256) {
         require(alternativeNames.length < MAX_ALTERNATIVES_PER_POLL, "Too many alternative provided.");
 
         polls.push(Poll({
@@ -49,6 +50,8 @@ contract Microdemocracy {
         Poll storage poll = polls[currentPollUid];
         emit PollCreated(currentPollUid, poll.name, poll.description, poll.closingMoment, poll.alternatives);
         currentPollUid += 1;
+
+        return currentPollUid - 1;
     }
 
     function giveOpinion(uint128 pollUid, uint8[] memory ranking) public {
