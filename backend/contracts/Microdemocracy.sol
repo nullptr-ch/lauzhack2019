@@ -3,8 +3,8 @@ pragma experimental ABIEncoderV2;
 
 contract Microdemocracy {
 
-    event PollCreated(uint256 pollUid, string name, string description, uint256 closingMoment, string[] alternatives);
-    event OpinionGiven(uint256 pollUid, uint8[] ranking);
+    event PollCreated(address owner, uint256 pollUid, string name, string description, uint256 closingMoment, string[] alternatives);
+    event OpinionGiven(address person, uint256 pollUid, uint8[] ranking);
     event PollClosed(uint256 pollUid);
 
     uint8 constant MAX_ALTERNATIVES_PER_POLL = 10;
@@ -48,7 +48,7 @@ contract Microdemocracy {
         }));
 
         Poll storage poll = polls[currentPollUid];
-        emit PollCreated(currentPollUid, poll.name, poll.description, poll.closingMoment, poll.alternatives);
+        emit PollCreated(msg.sender, currentPollUid, poll.name, poll.description, poll.closingMoment, poll.alternatives);
         currentPollUid += 1;
 
         return currentPollUid - 1;
@@ -79,20 +79,6 @@ contract Microdemocracy {
             ranking: ranking
         });
 
-        emit OpinionGiven(pollUid, ranking);
-    }
-
-    function closePoll(uint128 pollUid) public {
-        require(pollUid < polls.length, "You cannot close a non-existant poll.");
-        require(polls[pollUid].active, "You cannot close an already-closed poll.");
-
-        Poll storage poll = polls[pollUid];
-
-        require(msg.sender == poll.owner, "You cannot close a poll that you do not own.");
-        require(block.timestamp > poll.closingMoment, "You cannot close a poll whose closing moment is in the future.");
-
-        poll.active = false;
-
-        emit PollClosed(pollUid);
+        emit OpinionGiven(msg.sender, pollUid, ranking);
     }
 }
