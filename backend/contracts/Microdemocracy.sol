@@ -1,14 +1,14 @@
-pragma solidity >=0.4.22 <0.7.0;
-pragma experimental ABIEncoderV2;
+pragma solidity >= 0.5.8;
 
 contract Microdemocracy {
-    
-    event PollCreated(uint256 pollUid, string name, string description, uint256 closingMoment, string[] alternatives);
+
+    event PollCreated(uint256 pollUid, string name, string description, uint256 closingMoment, byte[MAX_ALTERNATIVE_STRING_LENGTH][] alternatives);
     event OpinionGiven(uint256 pollUid);
     event PollClosed(uint256 pollUid);
 
     uint8 constant MAX_ALTERNATIVES_PER_POLL = 10;
-    
+    uint16 constant MAX_ALTERNATIVE_STRING_LENGTH = 300;
+
     struct Opinion {
         bool voted;
         uint8[] ranking;
@@ -20,7 +20,7 @@ contract Microdemocracy {
         uint256 closingMoment;
         bool active;
         address owner;
-        string[] alternatives;
+        byte[MAX_ALTERNATIVE_STRING_LENGTH][] alternatives;
         uint8 alternativesCount;
         mapping(address => Opinion) opinions;
     }
@@ -32,7 +32,7 @@ contract Microdemocracy {
         string memory pollName,
         string memory pollDescription,
         uint256 closingMoment,
-        string[] memory alternativeNames
+        byte[MAX_ALTERNATIVE_STRING_LENGTH][] memory alternativeNames
     ) public {
         require(alternativeNames.length < MAX_ALTERNATIVES_PER_POLL, "Too many alternative provided.");
 
@@ -45,7 +45,7 @@ contract Microdemocracy {
             alternatives: alternativeNames,
             alternativesCount: uint8(alternativeNames.length)
         }));
-        
+
         Poll storage poll = polls[currentPollUid];
         emit PollCreated(currentPollUid, poll.name, poll.description, poll.closingMoment, poll.alternatives);
         currentPollUid += 1;
@@ -53,7 +53,7 @@ contract Microdemocracy {
 
     function giveOpinion(uint128 pollUid, uint8[] memory ranking) public {
         require(pollUid < polls.length, "You cannot vote for a non-existant poll.");
-        
+
         Poll storage poll = polls[pollUid];
 
         require(poll.active, "You cannot vote for an already closed poll.");
@@ -75,21 +75,21 @@ contract Microdemocracy {
             voted: true,
             ranking: ranking
         });
-        
+
         emit OpinionGiven(pollUid);
     }
 
     function closePoll(uint128 pollUid) public {
         require(pollUid < polls.length, "You cannot close a non-existant poll.");
         require(polls[pollUid].active, "You cannot close an already-closed poll.");
-        
+
         Poll storage poll = polls[pollUid];
 
         require(msg.sender == poll.owner, "You cannot close a poll that you do not own.");
         require(block.timestamp > poll.closingMoment, "You cannot close a poll whose closing moment is in the future.");
-        
+
         poll.active = false;
-        
+
         emit PollClosed(pollUid);
     }
 }

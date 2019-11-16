@@ -1,0 +1,3 @@
+let micro = artifacts.require("Microdemocracy");
+let myMicro = await micro.at("0x5fF2086D3147ED35372B26018Df40c699071F494");
+myMicro;
