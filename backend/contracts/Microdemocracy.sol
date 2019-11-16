@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 contract Microdemocracy {
 
     event PollCreated(uint256 pollUid, string name, string description, uint256 closingMoment, string[] alternatives);
-    event OpinionGiven(uint256 pollUid);
+    event OpinionGiven(uint256 pollUid, uint8[] ranking);
     event PollClosed(uint256 pollUid);
 
     uint8 constant MAX_ALTERNATIVES_PER_POLL = 10;
@@ -79,7 +79,7 @@ contract Microdemocracy {
             ranking: ranking
         });
 
-        emit OpinionGiven(pollUid);
+        emit OpinionGiven(pollUid, ranking);
     }
 
     function closePoll(uint128 pollUid) public {
