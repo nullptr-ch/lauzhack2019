@@ -91,6 +91,9 @@
 </template>
 
 <script>
+import abi from 'assets/microdemocracy-abi.json'
+const contractAddress = '0xdfdEfF7650a96A6ded29c8c7E6eE060c3eEaa4Ac'
+
 export default {
   name: 'MyLayout',
 
@@ -99,8 +102,8 @@ export default {
       leftDrawerOpen: false
     }
   },
-  beforeCreate () {
-    this.$store.dispatch('registerWeb3')
+  async beforeMount () {
+    await this.$store.dispatch('ethengine/initWeb3')
   }
 }
 </script>
