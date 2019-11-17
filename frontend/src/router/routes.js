@@ -5,7 +5,8 @@ const routes = [
     component: () => import('layouts/MyLayout.vue'),
     children: [
       { path: 'home', component: () => import('pages/Home.vue') },
-      { path: 'debug', component: () => import('components/microdapp') }
+      { path: 'debug', component: () => import('components/microdapp') },
+      { path: 'results', component: () => import('pages/Results.vue') }
     ]
   }
 ]
