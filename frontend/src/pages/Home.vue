@@ -25,14 +25,14 @@ export default {
         id: 2,
         name: 'What should I eat for dinner?',
         author: 'Earl',
-        img: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
+        img: 'https://semantic-ui.com/images/avatar2/large/kristy.png',
         org: 'My cozy home'
       },
       {
         id: 3,
         name: 'How much money do you earn?',
         author: 'FDP',
-        img: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
+        img: 'https://semantic-ui.com/images/avatar2/large/elyse.png',
         org: ''
       }
     ] }
