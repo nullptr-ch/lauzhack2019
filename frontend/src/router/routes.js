@@ -10,11 +10,6 @@ const routes = [
         name: 'microdapp',
         component: MicroDapp
       },
-      {
-        path: 'opinion/:pollUid/',
-        component: () => import('pages/Opinion.vue'),
-        props: true
-      },
       { path: '', component: () => import('pages/Index.vue') }
     ]
   }
