@@ -6,7 +6,8 @@ const routes = [
     children: [
       { path: 'home', component: () => import('pages/Home.vue') },
       { path: 'debug', component: () => import('components/microdapp') },
-      { path: 'results', component: () => import('pages/Results.vue') }
+      { path: 'results', component: () => import('pages/Results.vue') },
+      { path: 'new_poll', component: () => import('pages/NewPoll.vue') }
     ]
   }
 ]
