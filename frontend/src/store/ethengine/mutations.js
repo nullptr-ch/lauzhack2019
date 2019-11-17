@@ -19,7 +19,7 @@ export const UPDATE_NETWORK = (state, network) => {
       break
     default:
       state.network = 'Local / Ganache'
-      state.rpcURL = 'https://192.33.205.246:8545'
+      state.rpcURL = 'https://127.0.0.1:8545'
       break
   }
 }

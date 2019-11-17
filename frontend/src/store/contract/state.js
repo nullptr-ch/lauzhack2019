@@ -2,7 +2,7 @@ export default {
   abi: [],
   bin: '',
   hashes: [],
-  address: '0xdfdEfF7650a96A6ded29c8c7E6eE060c3eEaa4Ac',
+  address: '0xc78b0434c1589e82c59c5bc7ee22c605423b8745',
   // functions: {},
   // constants: {},
   txnReceipts: [],

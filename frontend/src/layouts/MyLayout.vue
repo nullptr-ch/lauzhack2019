@@ -101,6 +101,7 @@ export default {
   },
   async beforeMount () {
     await this.$store.dispatch('ethengine/initWeb3')
+    await this.$store.dispatch('contract/createContractInstance')
   }
 }
 </script>
