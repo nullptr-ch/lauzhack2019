@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import ethengine from './ethengine'
-// import contract from './contract'
+import contract from './contract'
 
 Vue.use(Vuex)
 
@@ -15,8 +15,8 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     strict: true,
     modules: {
-      ethengine
-      // contract,
+      ethengine,
+      contract
     }
   })
 

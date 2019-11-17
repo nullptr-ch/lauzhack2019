@@ -1,5 +1,3 @@
-import MicroDapp from 'components/microdapp'
-
 const routes = [
   {
     path: '/',
@@ -10,7 +8,7 @@ const routes = [
         component: () => import('pages/Opinion.vue'),
         props: true
       },
-      { path: '', component: () => import('pages/Index.vue') },
+      { path: '', component: () => import('pages/Index.vue') }
     ]
   }
 ]

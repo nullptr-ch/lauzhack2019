@@ -29,7 +29,6 @@ export const UPDATE_UNLOCKED = (state, unlocked) => {
 }
 
 export const UPDATE_ACCOUNT = (state, account) => {
-  console.log(account)
   state.account = account
 }
 

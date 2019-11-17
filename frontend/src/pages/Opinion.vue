@@ -43,22 +43,17 @@ export default {
   name: 'Opinion',
   data: function () {
     return {
-      loading: true
+      loading: true,
+      contract: null
     }
   },
   props: {
     pollUid: {
-      required: true,
-      type: Number
+      required: true
     }
   },
-  mounted: function () {
-    let allEvents = this.$store.state.contractInstance.getPastEvents('allEvents')
-    let pollCreationEvent = allEvents.filter(event => event.pollUid === this.pollUid)
-    this.pollName = pollCreationEvent.name
-    this.description = pollCreationEvent.description
-    this.alternatives = pollCreationEvent.alternatives
-    this.loading = false
+  mounted () {
+    console.log(this.$store.getters['contract/events'])
   }
 }
 </script>
