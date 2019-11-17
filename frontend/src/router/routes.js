@@ -1,10 +1,14 @@
-
 const routes = [
   {
     path: '/',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: 'home', component: () => import('pages/Home.vue') },
+      {
+        path: 'opinion/:pollUid/',
+        component: () => import('pages/Opinion.vue'),
+        props: true
+      },
+      { path: '', component: () => import('pages/Index.vue') }
       { path: 'debug', component: () => import('components/microdapp') },
       { path: 'results', component: () => import('pages/Results.vue') },
       { path: 'new_poll', component: () => import('pages/NewPoll.vue') }
