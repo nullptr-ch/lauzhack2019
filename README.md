@@ -1,30 +1,36 @@
 # Micropinion
 
-Microdemocracy brought to your neighborhood.
+Bring microdemocracy to everyone, using the blockchain!
+
+This project tackles the blockchain application challenge from **AdNovum**, for LauzHack 2019.
+
+_By team nullptr_
 
 ## Inspiration
 
-In Switzerland, we are used to voting ca. 4 times a year. But smaller scales decisions are not easily implemented. That's why we decided to tackle this problem, by combining it with the blockchain, to provide a trustless software, for everyone to use.
+This app aims to bridge the current democratic gap at local scale. Because giving your opinion is essential to a working society, we decided to tackle this problem using blockchain, to provide a trustless solution for everyone to use.
 
 ## What it does
 
-The web application allows any user to create polls, view which are relevant to them, choose their preferred outcome, and finally view the results. The results are implemented using partial [instant-runoff voting](https://en.wikipedia.org/wiki/Instant-runoff_voting).
+The web application allows any user to create polls, view which are relevant to them, choose their preferred outcome, and finally view the results. The results are implemented using partial [instant-runoff voting](https://en.wikipedia.org/wiki/Instant-runoff_voting) system.
+
+The implementation of the vote counting algorithm is complete and functional, as can be seen on the provided screenshot.
 
 ## How we built it
 
-The app was built using the Quasar framework, working with Vue.js. We found that it was the best alternative so that the site would be easily portable for mobile phones and also usable on desktop computers.
+The app was built using the Quasar framework, an overlay of Vue.js. We decided that it was the best alternative so that the website would be easily portable for mobile phones and also usable on desktop computers.
 
 We used the smart-contract capabilites of the Ethereum network to implement our trustless application. Events are used to record the opening of new polls and the voting of each user.
 
 ## Challenges we ran into
 
-Before coming to this event, we were complete novices in everything related to blockchain. We took this opportunity to further our understanding of the topic, and to try to implement a real-world application.
+Before coming to this event, we were complete novices in everything related to blockchain. We took this opportunity to deepen our understanding of the topic, and to try to implement a real-world application.
 
-We were unable to connect our application to the blockchain for a very long time. The implementation of the smart contract and events was complete quite early, and the application was be ready to receive real data and communicate with the network. However, we still missed this all-important link, namely the parsing of the raw data of the events, and their dispatching to the application.
+We were unable to connect our application to the blockchain for a very long time. The implementation of the smart contract and events was complete quite early, and the application was ready to receive real data and communicate with the network. However, we still missed this all-important link, namely the parsing of the raw data of the events, and their dispatching to the application.
 
 ## Accomplishments that we're proud of
 
-We have come quite fare from the beginning, knowing (almost) absolutely nothing, to implementing such an application. We are proud of having taken this opportunity to learn from the grounds up about a current topic in computer science.
+We have come quite far regarding where we started, knowing (almost) absolutely nothing, to implementing such an application. We are proud of having taken this opportunity to learn from the grounds up about a current topic in computer science.
 
 By being only 2 in the team, we are also quite proud of having done that all by ourselves.
 
@@ -34,4 +40,4 @@ We learned how to implement smart contracts using solidity, and how to communica
 
 ## What's next for Micropinions
 
-We originally thought of adding a geographical aspect to the polls - this was indeed the starting idea, "geopolls". However, due to the time constraints, we were not able to even think about implementing it.
+We originally thought of adding a geographical aspect to the polls - this was indeed the starting idea, "geo-polls". However, due to the time constraints, we were not able to even think about implementing it.
