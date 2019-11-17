@@ -98,6 +98,9 @@ export default {
     return {
       leftDrawerOpen: false
     }
+  },
+  beforeCreate () {
+    this.$store.dispatch('registerWeb3')
   }
 }
 </script>
