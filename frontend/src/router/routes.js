@@ -1,3 +1,4 @@
+import MicroDapp from 'components/microdapp'
 
 const routes = [
   {
