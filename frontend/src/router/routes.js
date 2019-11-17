@@ -9,6 +9,9 @@ const routes = [
         props: true
       },
       { path: '', component: () => import('pages/Index.vue') }
+      { path: 'debug', component: () => import('components/microdapp') },
+      { path: 'results', component: () => import('pages/Results.vue') },
+      { path: 'new_poll', component: () => import('pages/NewPoll.vue') }
     ]
   }
 ]
