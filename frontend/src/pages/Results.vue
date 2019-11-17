@@ -33,6 +33,26 @@ const opinionGiven = [
     address: 'a',
     pollUid: 1,
     ranking: [0, 1, 3, 2]
+  },
+  {
+    address: 'a',
+    pollUid: 1,
+    ranking: [3, 2, 1, 0]
+  },
+  {
+    address: 'a',
+    pollUid: 1,
+    ranking: [1, 0, 3, 2]
+  },
+  {
+    address: 'a',
+    pollUid: 1,
+    ranking: [2, 3, 1, 0]
+  },
+  {
+    address: 'a',
+    pollUid: 1,
+    ranking: [0, 2, 3, 1]
   }
 ]
 const pollUid = 1
@@ -58,7 +78,7 @@ export default {
   components: {
     VuePlotly
   },
-  data: function () {
+  data () {
     return {
       data: computeResults(opinionGiven, pollUid, numberOfChoices),
       layout: layout,

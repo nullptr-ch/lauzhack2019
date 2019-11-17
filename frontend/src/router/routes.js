@@ -8,7 +8,7 @@ const routes = [
         component: () => import('pages/Opinion.vue'),
         props: true
       },
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: 'home', component: () => import('pages/Home.vue') },
       { path: 'debug', component: () => import('components/microdapp') },
       { path: 'results', component: () => import('pages/Results.vue') },
       { path: 'new_poll', component: () => import('pages/NewPoll.vue') }
