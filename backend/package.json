@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.0.25",
+    "ethereumjs-testrpc": "^6.0.3",
+    "ganache-cli": "^6.7.0",
+    "truffle": "^5.1.0"
+  }
+}

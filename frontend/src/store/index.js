@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import example from './module-example'
+import ethengine from './ethengine'
+import contract from './contract'
 
 Vue.use(Vuex)
 
@@ -12,13 +13,11 @@ Vue.use(Vuex)
 
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
+    strict: true,
     modules: {
-      // example
-    },
-
-    // enable strict mode (adds overhead!)
-    // for dev mode only
-    strict: process.env.DEV
+      ethengine,
+      contract
+    }
   })
 
   return Store
